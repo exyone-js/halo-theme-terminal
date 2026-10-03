@@ -797,6 +797,11 @@ spec:
           label: 文章显示标签
           value: true
         - $formkit: checkbox
+          name: show_cover
+          label: 右侧显示文章配图
+          value: true
+          help: 读取文章设置的封面图，显示在文章正文右侧；未设置封面的文章不受影响。窄屏设备上自动移至标题下方
+        - $formkit: checkbox
           name: show_toc
           id: show_toc
           label: 显示文章目录 (TOC)

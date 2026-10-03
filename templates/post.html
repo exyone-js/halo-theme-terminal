@@ -6,8 +6,16 @@
 <th:block th:fragment="head">
     <title th:text="|${post.spec.title} - ${site.title}|">Post title</title>
 </th:block>
-<th:block th:fragment="content">
-    <article class="post">
+<th:block th:fragment="content"
+          th:with="showCover=${theme.config.post_page.show_cover != false},
+                   coverUrl=${post.spec.cover}">
+    <article class="post" th:classappend="${showCover and not #strings.isEmpty(coverUrl)} ? 'post--with-cover'">
+        <aside class="post-cover-aside" th:if="${showCover and not #strings.isEmpty(coverUrl)}">
+            <img class="post-cover-image"
+                 th:src="${coverUrl}"
+                 th:alt="${post.spec.title}"
+                 loading="lazy"/>
+        </aside>
         <header>
             <h1 class="post-title" th:text="${post.spec.title}">Post Title</h1>
             <div class="post-meta">
