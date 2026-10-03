@@ -18,10 +18,6 @@
     <section class="posts">
         <article class="post on-list" th:each="post : ${posts.items}"
                  th:classappend="${not #strings.isEmpty(post.spec.cover)} ? 'on-list--with-cover'">
-            <a data-pjax class="post-list-cover" th:if="${not #strings.isEmpty(post.spec.cover)}"
-               th:href="@{${post.status.permalink}}" th:attr="aria-label=${post.spec.title}">
-                <img th:src="${post.spec.cover}" th:alt="${post.spec.title}" loading="lazy"/>
-            </a>
             <div class="post-list-main">
                 <header>
                     <h2 class="post-title">
@@ -51,6 +47,10 @@
                     <a data-pjax class="read-more button inline" th:href="@{${post.status.permalink}}" th:text="#{page.post.more} + ' >'">READ MORE ></a>
                 </div>
             </div>
+            <a data-pjax class="post-list-cover" th:if="${not #strings.isEmpty(post.spec.cover)}"
+               th:href="@{${post.status.permalink}}" th:attr="aria-label=${post.spec.title}">
+                <img th:src="${post.spec.cover}" th:alt="${post.spec.title}" loading="lazy"/>
+            </a>
         </article>
     </section>
     <th:block th:replace="~{modules/pagination :: page(
